@@ -39,11 +39,12 @@ function MovieList() {
 
     console.log(filterType[0],"???????????????????")
     console.log(currentGenres[0],"!!!!!!!!!!!!!!!!!!!!!!!")
+    console.log(url, "this is URL");
     let res = await axios.get(url);
     movie[1](res.data.results);
     originalMovie[1](res.data.results);
     totalPage[1](res.data.total_pages);
-    console.log(url, "this is URL");
+  
   }
   changePage = (numPage) => {
     page[1](numPage);
