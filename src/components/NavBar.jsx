@@ -77,8 +77,7 @@ export default function NavBar() {
 
 
   }
-  console.log(movie[0])
-  console.log(originalMovie[0],"saduhcbsduybdsjuhyfcb")
+  
 
   return (
     <div className={classes.root}>

@@ -16,7 +16,9 @@ export default function SingleMovie({ movie }) {
     })
     return genres
   }
-
+  let getYear = (time) => {
+    return time.split("").splice(0, 4).join("");
+  };
 
 
   return (
@@ -29,9 +31,9 @@ export default function SingleMovie({ movie }) {
             <div className="movie_card" id="bright">
               <div className="info_section">
                 <div className="movie_header">
-                  <img className="locandina" src={`https://image.tmdb.org/t/p/w200//${movie.poster_path}`} />
+                  <img className="locandina" src={`https://image.tmdb.org/t/p/original//${movie.poster_path}`} />
                   <h1>{movie.original_title}</h1>
-      <h4><Moment toNow>{movie.release_date}</Moment></h4>
+      <h4><Moment format="YYYY">{movie.release_date}</Moment></h4>
                   {/* <span className="minutes">117 min</span> */}
                   <ul className="type">{showGen(movie.genre_ids).map(genres => {
                     return (<li>{genres}</li>)

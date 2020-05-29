@@ -1,100 +1,87 @@
-import React, { Fragment, useContext } from 'react';
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import SingleMovie from './SingleMovie'
-import { StoreContext } from './../ThemeContext'
+import React, { Fragment, useContext } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import SingleMovie from "./SingleMovie";
+import { StoreContext } from "./../ThemeContext";
 import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css";
-import FilterDropDown from './FilterDropDown'
-
-
-
+import FilterDropDown from "./FilterDropDown";
 
 function MovieList() {
+  let {
+    movie,
+    page,
+    totalPage,
+    changePage,
+    currentGenres,
+    filterType,
+    originalMovie,
+  } = useContext(StoreContext);
 
+  useEffect(() => {
+    getDataFromAPI(1);
+    return () => {};
+  }, []);
 
-
-
-
-    let { movie, page, totalPage, changePage, currentGenres,filterType,originalMovie} = useContext(StoreContext)
-
-
-
-    useEffect(() => {
-
-        getDataFromAPI(1)
-        return () => {
-
-        }
-    }, [])
-
-   
-
-
-
-    async function getDataFromAPI(numPage) {
-        let APIkey = process.env.REACT_APP_APIKEY
-        let url=""
-        if(filterType[0]===null)
-        {
-            url = `https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`
-        }
-        else
-        {
-            url=`https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`
-        }
-        let res = await axios.get(url)
-        movie[1](res.data.results)
-        originalMovie[1](res.data.results)
-        totalPage[1](res.data.total_pages)
-        console.log(res.data)
-        console.log(url, "this is URL")
+  async function getDataFromAPI(numPage) {
+    let APIkey = process.env.REACT_APP_APIKEY;
+    let url = "";
+    
+    if (filterType[0] === null) {
+      url = `https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`;
+    } else {
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`;
     }
-    changePage = numPage => {
-        page[1](numPage)
 
-        getDataFromAPI(numPage)
+    console.log(filterType[0],"???????????????????")
+    console.log(currentGenres[0],"!!!!!!!!!!!!!!!!!!!!!!!")
+    let res = await axios.get(url);
+    movie[1](res.data.results);
+    originalMovie[1](res.data.results);
+    totalPage[1](res.data.total_pages);
+    console.log(url, "this is URL");
+  }
+  changePage = (numPage) => {
+    page[1](numPage);
 
+    getDataFromAPI(numPage);
 
-        // props.getProductListBySearch(numPage)
-        //fetch a data  
-        //or update a query to get data
-    };
-    console.log(page[0])
+    // props.getProductListBySearch(numPage)
+    //fetch a data
+    //or update a query to get data
+  };
+  console.log(page[0]);
 
-    return <Fragment>
-        <div class="movie-section-wrapper">
-        {
-            movie[0] === null ? <><h1>Loading</h1></>
-                : <>
+  return (
+    <Fragment>
+      <div class="movie-section-wrapper">
+        {movie[0] === null ? (
+          <>
+            <h1>Loading</h1>
+          </>
+        ) : (
+          <>
+            <div className="Pagination">
+              <FilterDropDown></FilterDropDown>
 
-                    <div className="Pagination">
-                        <FilterDropDown></FilterDropDown>
+              <Pagination
+                currentPage={page[0]}
+                totalPages={totalPage[0]}
+                changeCurrentPage={changePage}
+                theme="square-fill"
+              />
+            </div>
 
-
-                        <Pagination
-                            currentPage={page[0]}
-                            totalPages={totalPage[0]}
-                            changeCurrentPage={changePage}
-                            theme="square-fill"
-                        />
-
-                    </div>
-
-                    <div className="movie-section">
-                        {
-
-                            movie[0].map(movie => {
-                                return <SingleMovie movie={movie} ></SingleMovie>
-                            })
-                        }
-                    </div>
-                </>}
-                </div>
-                </Fragment>
-
-
-
+            <div className="movie-section">
+              {movie[0].map((movie) => {
+                return <SingleMovie movie={movie}></SingleMovie>;
+              })}
+            </div>
+          </>
+        )}
+      </div>
+    </Fragment>
+  );
 }
 
 export default MovieList;

@@ -16,20 +16,37 @@ body {
 .movie-section {
   display: flex;
   flex-wrap: wrap;
+  
+  
 
+}
+.movie-sidebar-wrapper
+{
+	display: flex;
+	justify-content: space-between;
+}
+.movie-section-wrapper {
+width: 65%;
+
+  }
+.my-container
+{
+	width: 80%;
+    margin: 0 auto;
 }
 
 .movie_card {
   position: relative;
   display: block;
-  width: 600px;
-  height: 600px;
-  margin: 100px auto;
+  width: 450px;
+  height: 500px;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
-  margin: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
 }
+
 
 .movie_card:hover {
   transform: scale(1.02);
@@ -44,11 +61,19 @@ body {
   z-index: 2;
   border-radius: 10px;
 }
+.movie_card .info_section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+}
 
 .movie_card .info_section .movie_header {
   position: relative;
   padding: 25px;
-  height: 40%;
+  height: 43%;
 }
 
 .movie_card .info_section .movie_header h1 {
@@ -59,11 +84,15 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  font-size: 15px !important;
+  text-transform: uppercase;
 }
 
 .movie_card .info_section .movie_header h4 {
   color: #9ac7fa;
   font-weight: 400;
+  font-size: 13px;
+  margin-bottom: 40px;
 }
 
 .movie_card .info_section .movie_header .minutes {
@@ -92,19 +121,20 @@ body {
   padding-right: 10px;
   background-color: crimson;
   border-radius: 10px;
+  font-size: 12px;
 }
 
 .movie_card .info_section .movie_header .locandina {
   position: relative;
   float: left;
   margin-right: 20px;
-  height: 120px;
+  height: 80px;
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
 }
 
 .movie_card .info_section .movie_desc {
   padding: 25px;
-  height: 50%;
+  height: 47%;
   overflow: auto;
 }
 
@@ -135,13 +165,13 @@ body {
 }
 
 .imb-icon {
-  font-size: 26px !important;
+  font-size: 20px !important;
   color: orange;
 }
 
 .users-icon {
   color: lightslategray;
-  font-size: 24px !important;
+  font-size: 20px !important;
 }
 
 .eightteen {
@@ -152,6 +182,7 @@ i span {
   color: white;
   margin-left: 7px;
   font-weight: lighter;
+  font-size: 20px !important;
 }
 
 .movie_card .info_section .movie_social ul {
@@ -186,13 +217,19 @@ i span {
   background-size: cover;
   border-radius: 11px;
 }
+.sidebar
+{
+	width: 30%;
+	height: 500px;
+	border: 2px solid crimson;
+}
 
 @media screen and (min-width: 768px) {
   .movie_header {
-    width: 60%;
+    width: 70%;
   }
   .movie_desc {
-    width: 50%;
+    width: 60%;
   }
   .info_section {
     background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
@@ -396,4 +433,45 @@ i span {
 
 .MuiInput-underline:after {
   border-bottom: 2px solid white !important;
+}
+
+
+.input-range__track--active
+{
+	background: crimson !important;
+}
+.input-range__slider
+{
+	background: crimson !important;
+    border: 1px solid crimson !important;
+}
+.year-filter
+{
+	margin-top: 30px;
+    margin: 0 auto;
+	width: 60%;
+	text-align: center;
+	padding-top: 40px;
+	color: white;
+}
+.input-range
+{
+	
+}
+.price-filer-fromTo-text
+{
+	font-weight: bolder;
+	font-size: 24px;
+}
+.input-range__label-container
+{
+	font-size: 20px !important;
+}
+.input-range__label--min, .input-range__label--max
+{
+	bottom: -2.6rem !important;
+}
+.input-range__label--value
+{
+	display: none;
 }

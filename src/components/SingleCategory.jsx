@@ -16,7 +16,7 @@ function SingleCategory({ genres }) {
         totalPage[1](res.data.total_pages)
         page[1](pageNum)
         currentGenres[1](genresResult)
-        filterType[1]("")
+        filterType[1](null)
 
 
 
