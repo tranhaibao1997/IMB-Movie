@@ -43,7 +43,7 @@ class FilterSliderYear extends React.Component {
       }
       else
       {
-        url = `https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres}`
+        url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres}`
       }
      
       result = await Axios.get(url);
