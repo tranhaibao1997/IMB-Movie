@@ -27,10 +27,14 @@ function MovieList() {
     let APIkey = process.env.REACT_APP_APIKEY;
     let url = "";
     
-    if (filterType[0] === null) {
+    if (filterType[0] === null && currentGenres[0]!==null) {
       url = `https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`;
-    } else {
+    } else if(filterType[0]!==null) {
       url = `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`;
+    }
+    else
+    {
+        url=`https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}}`
     }
 
     console.log(filterType[0],"???????????????????")
