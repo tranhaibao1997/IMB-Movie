@@ -34,7 +34,7 @@ function FilterDropDown(props) {
 
         let APIkey = process.env.REACT_APP_APIKEY
         let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType}&include_adult=true&include_video=false&page=${pageNum}`)
-        movie[1](res.data)
+        movie[1](res.data.results)
         totalPage[1](res.data.total_pages)
         page[1](pageNum)
 
@@ -62,8 +62,8 @@ function FilterDropDown(props) {
                         <MenuItem value={"release_date.asc"}>Release Day(Asc)</MenuItem>
                         <MenuItem value={"vote_average.desc"}>Vote(Desc)</MenuItem>
                         <MenuItem value={"vote_average.asc"}>Vote(Asc)</MenuItem>
-                        <MenuItem value={"revenue.desc"}>Vote(Desc)</MenuItem>
-                        <MenuItem value={"revenue.asc"}>Vote(Asc)</MenuItem>
+                        <MenuItem value={"revenue.desc"}>Revenue(Desc)</MenuItem>
+                        <MenuItem value={"revenue.asc"}>Revenue(Asc)</MenuItem>
 
 
                     </Select>

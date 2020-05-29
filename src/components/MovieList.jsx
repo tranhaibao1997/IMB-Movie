@@ -16,7 +16,7 @@ function MovieList() {
 
 
 
-    let { movie, page, totalPage, changePage, currentGenres,filterType } = useContext(StoreContext)
+    let { movie, page, totalPage, changePage, currentGenres,filterType,originalMovie} = useContext(StoreContext)
 
 
 
@@ -27,6 +27,8 @@ function MovieList() {
 
         }
     }, [])
+
+   
 
 
 
@@ -42,7 +44,8 @@ function MovieList() {
             url=`https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`
         }
         let res = await axios.get(url)
-        movie[1](res.data)
+        movie[1](res.data.results)
+        originalMovie[1](res.data.results)
         totalPage[1](res.data.total_pages)
         console.log(res.data)
         console.log(url, "this is URL")
@@ -60,6 +63,7 @@ function MovieList() {
     console.log(page[0])
 
     return <Fragment>
+        <div class="movie-section-wrapper">
         {
             movie[0] === null ? <><h1>Loading</h1></>
                 : <>
@@ -80,12 +84,14 @@ function MovieList() {
                     <div className="movie-section">
                         {
 
-                            movie[0].results.map(movie => {
+                            movie[0].map(movie => {
                                 return <SingleMovie movie={movie} ></SingleMovie>
                             })
                         }
                     </div>
-                </>}</Fragment>
+                </>}
+                </div>
+                </Fragment>
 
 
 
