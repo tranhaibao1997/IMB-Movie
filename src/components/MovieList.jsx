@@ -34,7 +34,7 @@ function MovieList() {
     }
     else
     {
-        url=`https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}}`
+        url=`https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}`
     }
 
     console.log(filterType[0],"???????????????????")
