@@ -345,7 +345,7 @@
     .Pagination {
         width: 77%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         margin: 0 auto;
         box-sizing: border-box;
     }
@@ -367,7 +367,7 @@
     .square-fill .is-active,
     .square-fill a:first-of-type,
     .square-fill a:last-of-type {
-        background: linear-gradient(60deg, crimson, white) !important;
+        background: linear-gradient(60deg, #f79533, white) !important;
         color: black!important;
     }
     
@@ -378,4 +378,25 @@
     
     .MuiAppBar-colorPrimary {
         background-color: brown !important;
+    }
+    
+    .MuiFormControl-root label {
+        color: white;
+    }
+    
+    .filter-by-dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    
+    .MuiInputBase-root {
+        margin-top: 0px;
+        color: white !important;
+        border-bottom: 1px solid crimson
+    }
+    
+    .MuiInput-underline:after {
+        border-bottom: 2px solid white !important;
     }

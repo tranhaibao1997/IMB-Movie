@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {StoreContext} from './../ThemeContext'
+import Moment from 'react-moment';
 export default function SingleMovie({ movie }) {
 
   let { category } = useContext(StoreContext)
@@ -30,8 +31,8 @@ export default function SingleMovie({ movie }) {
                 <div className="movie_header">
                   <img className="locandina" src={`https://image.tmdb.org/t/p/w200//${movie.poster_path}`} />
                   <h1>{movie.original_title}</h1>
-                  <h4>2017, David Ayer</h4>
-                  <span className="minutes">117 min</span>
+      <h4><Moment toNow>{movie.release_date}</Moment></h4>
+                  {/* <span className="minutes">117 min</span> */}
                   <ul className="type">{showGen(movie.genre_ids).map(genres => {
                     return (<li>{genres}</li>)
                   })}</ul>
@@ -49,7 +50,7 @@ export default function SingleMovie({ movie }) {
                   </ul>
                 </div>
               </div>
-              <div className="blur_back bright_back" style={{ backgroundImage: "url(" + `https://image.tmdb.org/t/p/w500//${movie.backdrop_path}` + ")" }}></div>
+              <div className="blur_back bright_back" style={{ backgroundImage: "url(" + `https://image.tmdb.org/t/p/original//${movie.backdrop_path}` + ")" }}></div>
             </div>
 
           </>

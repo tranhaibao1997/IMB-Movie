@@ -11,6 +11,7 @@ export default ({ children }) => {
     const [currentGenres, setCurrentGenres] = useState("");
     const [currentPage,setCurrentPage]=useState(1);
     const [totalPage,setToTalPage]=useState(null);
+    const [filterType, setFilterType] = useState(null);
   
 
 
@@ -20,7 +21,8 @@ export default ({ children }) => {
         category: [category, setCategory],
         page:[currentPage,setCurrentPage],
         totalPage:[totalPage,setToTalPage],
-        currentGenres:[currentGenres,setCurrentGenres]
+        currentGenres:[currentGenres,setCurrentGenres],
+        filterType:[filterType, setFilterType]
         
     };
 

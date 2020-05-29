@@ -5,19 +5,21 @@ import SingleMovie from './SingleMovie'
 import { StoreContext } from './../ThemeContext'
 import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css";
+import FilterDropDown from './FilterDropDown'
+
+
 
 
 function MovieList() {
 
 
-    let { movie, page, totalPage,changePage,currentGenres } = useContext(StoreContext)
 
-    // const totalPage = 0
-    // const changeCurrentPage = numPage => {
-    //     context.setCurrentPage(numPage)
-    //     console.log(numPage)
-    //     props.getProductList(props.searchText,numPage);
-    //   };
+
+
+    let { movie, page, totalPage, changePage, currentGenres,filterType } = useContext(StoreContext)
+
+
+
     useEffect(() => {
 
         getDataFromAPI(1)
@@ -30,11 +32,20 @@ function MovieList() {
 
     async function getDataFromAPI(numPage) {
         let APIkey = process.env.REACT_APP_APIKEY
-        let url=`https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`
+        let url=""
+        if(filterType[0]===null)
+        {
+            url = `https:api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`
+        }
+        else
+        {
+            url=`https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`
+        }
         let res = await axios.get(url)
-        console.log(url)
         movie[1](res.data)
         totalPage[1](res.data.total_pages)
+        console.log(res.data)
+        console.log(url, "this is URL")
     }
     changePage = numPage => {
         page[1](numPage)
@@ -52,7 +63,11 @@ function MovieList() {
         {
             movie[0] === null ? <><h1>Loading</h1></>
                 : <>
+
                     <div className="Pagination">
+                        <FilterDropDown></FilterDropDown>
+
+
                         <Pagination
                             currentPage={page[0]}
                             totalPages={totalPage[0]}

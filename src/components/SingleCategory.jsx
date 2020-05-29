@@ -7,7 +7,7 @@ import axios from 'axios'
 function SingleCategory({ genres }) {
 
 
-    let { category, movie, changePage, page, totalPage,currentGenres} = useContext(StoreContext)
+    let { category, movie, changePage, page, totalPage,currentGenres,filterType} = useContext(StoreContext)
     async function getDataByCategory(genres, pageNum) {
         let genresResult = category[0].genres.find(elm => elm.name === genres).id
         let APIkey = process.env.REACT_APP_APIKEY
@@ -16,6 +16,7 @@ function SingleCategory({ genres }) {
         totalPage[1](res.data.total_pages)
         page[1](pageNum)
         currentGenres[1](genresResult)
+        filterType[1]("")
 
 
 
