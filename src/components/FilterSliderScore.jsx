@@ -4,27 +4,19 @@ import "react-input-range/lib/css/index.css";
 import Axios from "axios";
 import { StoreContext } from "./../ThemeContext";
 
-class FilterSliderYear extends React.Component {
+class FilterSliderScore extends React.Component {
   static contextType = StoreContext;
   constructor(props) {
     super(props);
 
     this.state = {
-      value: { min: 1990, max: 2020 },
+      value: { min: 0, max: 10 },
     };
   }
 
-  getYear = (time) => {
-      console.log(time,"time hereeeeeeeeeeeeeee")
-      if(time=="")
-      {
-          console.log("bi undefine ???")
-          time="2020-06-06"
-      }
-    return time.split("").splice(0, 4).join("");
-  };
 
-  FilterByYear = async (value) => {
+
+  FilterByScore = async (value) => {
     console.log(value);
     console.log()
 
@@ -49,12 +41,12 @@ class FilterSliderYear extends React.Component {
       result = await Axios.get(url);
       console.log(url, "url");
       console.log(result.data);
-      console.log(result.data.results.map(a=>(a.release_date)))
+      
      
       let filteredArray = result.data.results.filter(
         a =>
-          this.getYear(a.release_date) >= this.state.value.min &&
-          this.getYear(a.release_date) <= this.state.value.max
+          a.vote_average >= this.state.value.min &&
+          a.vote_average <= this.state.value.max
       );
       console.log(filteredArray)
       this.context.movie[1](filteredArray)
@@ -67,7 +59,7 @@ class FilterSliderYear extends React.Component {
   render() {
     return (
       <div className="shop-widget">
-        <h3 className="shop-title">YEAR Filter</h3>
+        <h3 className="shop-title">IBM Score Filter</h3>
         <p>
           From:{" "}
           <span class="price-filer-fromTo-text">{this.state.value.min}</span> -
@@ -75,12 +67,12 @@ class FilterSliderYear extends React.Component {
           <span class="price-filer-fromTo-text">{this.state.value.max}</span>
         </p>
         <InputRange
-          maxValue={2020}
-          minValue={1990}
+          maxValue={10}
+          minValue={0}
           value={this.state.value}
           onChange={(value) => {
             this.setState({ value });
-            this.FilterByYear(value);
+            this.FilterByScore(value);
           }}
         />
         <br></br>
@@ -89,4 +81,4 @@ class FilterSliderYear extends React.Component {
   }
 }
 
-export default FilterSliderYear;
+export default FilterSliderScore;
