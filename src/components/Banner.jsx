@@ -23,7 +23,7 @@ export default function Banner() {
 
   async function getTopMovieAPI() {
     let APIkey = process.env.REACT_APP_APIKEY;
-    let url = `https://api.themoviedb.org/3/movie/popular?api_key=${APIkey}&language=en-US&page=1`;
+    let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=1`;
     let res = await Axios.get(url);
     var size = 5;
     var arrayOfArrays = [];
