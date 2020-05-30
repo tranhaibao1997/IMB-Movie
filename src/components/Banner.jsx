@@ -1,20 +1,11 @@
 import React from "react";
-import Slider from "react-slick";
+import Carousel from "react-bootstrap/Carousel";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 import SingleCardSlider from "./SingleCardSlider";
 
 export default function Banner() {
   const [topMovie, setTopMovie] = React.useState(null);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
 
   React.useEffect(() => {
     getTopMovieAPI();
@@ -23,7 +14,7 @@ export default function Banner() {
 
   async function getTopMovieAPI() {
     let APIkey = process.env.REACT_APP_APIKEY;
-    let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=1`;
+    let url = `https://api.themoviedb.org/3/movie/popular?api_key=${APIkey}&language=en-US&page=1`;
     let res = await Axios.get(url);
     var size = 5;
     var arrayOfArrays = [];
@@ -39,22 +30,22 @@ export default function Banner() {
         <div>Loading</div>
       ) : (
         <>
-          <h1 className="title">Top Popular Movies</h1>
-          <Slider {...settings}>
-            {topMovie.map((array) => {
+        <h1 className="title">Top Popular Movies</h1>
+        <Carousel>
+          {topMovie.map((array) => {
             return (
               
-                
+                <Carousel.Item>
                   <div className="each-slider">
                   {array.map((movie) => {
                     return <SingleCardSlider movie={movie}></SingleCardSlider>;
                   })}
                     </div>
-                
+                </Carousel.Item>
             
             );
           })}
-          </Slider>
+        </Carousel>
         </>
       )}
     </>
