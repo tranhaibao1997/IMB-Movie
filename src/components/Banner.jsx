@@ -30,7 +30,7 @@ export default function Banner() {
         <div>Loading</div>
       ) : (
         <>
-        <h1 className="title">Top Pupular Movies</h1>
+        <h1 className="title">Top Popular Movies</h1>
         <Carousel>
           {topMovie.map((array) => {
             return (
