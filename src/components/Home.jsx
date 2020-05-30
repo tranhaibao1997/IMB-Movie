@@ -1,18 +1,24 @@
 import React from "react";
-import Category from "./Category";
 import MovieList from "./MovieList";
 import SideBar from "./SideBar";
-import Banner from './Banner'
+import Banner from "./Banner";
+import PopularMovies from "./PopularMovies";
+import TopRatedMovies from "./TopRatedMovies";
+import UpComingMovies from "./UpComingMovies";
 
 export default function Home() {
   return (
-    <div className="my-container">
+    <>
       <Banner></Banner>
-      <Category></Category>
-      <div className="movie-sidebar-wrapper">
-        <MovieList></MovieList>
-        <SideBar></SideBar>
+      <div className="my-container">
+        <PopularMovies></PopularMovies>
+        <TopRatedMovies></TopRatedMovies>
+        <UpComingMovies></UpComingMovies>
+        <div className="movie-sidebar-wrapper" style={{display:"none"}}>
+          <SideBar></SideBar>
+          
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import MovieDetail from './components/MovieDetail';
+import Movies from './components/Movies';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -18,8 +20,10 @@ function App() {
     <Switch>
     <Route exact path="/" component={Home}></Route>
     <Route exact path="/movie/:id" component={MovieDetail}></Route>
+    <Route exact path="/movies" component={Movies}></Route>
     <Home></Home>
     </Switch>
+    <Footer></Footer>
    
 
 

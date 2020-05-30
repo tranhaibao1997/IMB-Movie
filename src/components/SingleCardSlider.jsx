@@ -1,5 +1,6 @@
 import React from "react";
 import { StoreContext } from "./../ThemeContext";
+import {Link} from 'react-router-dom'
 
 export default function SingleCardSlider({ movie }) {
   let { category } = React.useContext(StoreContext);
@@ -20,12 +21,12 @@ export default function SingleCardSlider({ movie }) {
       {category[0] === null ? (
         <div>Loading</div>
       ) : (
-        <div
+        <Link to={`/movie/${movie.id}`}
           className="card"
           style={{
             backgroundImage:
               "url(" +
-              `https://image.tmdb.org/t/p/original//${movie.backdrop_path}` +
+              `https://image.tmdb.org/t/p/w400//${movie.backdrop_path}` +
               ")",
           }}
         >
@@ -36,7 +37,7 @@ export default function SingleCardSlider({ movie }) {
               <hr />
             </div>
 
-            <ul className="type">
+            <ul className="card-slider-genres">
               {showGen(movie.genre_ids).map((genres) => {
                 return <li>{genres}</li>;
               })}
@@ -70,7 +71,7 @@ export default function SingleCardSlider({ movie }) {
                       </ul>
                     </div>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );

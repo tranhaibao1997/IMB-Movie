@@ -64,7 +64,7 @@ function MovieList() {
         ) : (
           <>
             <div className="Pagination">
-              <FilterDropDown></FilterDropDown>
+              
 
               <Pagination
                 currentPage={page[0]}

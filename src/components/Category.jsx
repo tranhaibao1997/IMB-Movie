@@ -21,7 +21,7 @@ export default function Category(props) {
     console.log(category[0])
     return <>
     <div className="category-section-wrapper">
-    <h2 className="section-title">Get Movie List By Genres</h2>
+    <h2 className="section-title">Genres</h2>
         {
             category[0] === null ? <><h1>Loading</h1></>
                 : <>

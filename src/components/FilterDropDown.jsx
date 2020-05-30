@@ -45,7 +45,7 @@ function FilterDropDown(props) {
     return (
         <>
             <div className="filter-by-dropdown">
-                <h4>Filter By: </h4>
+                <h4>Sort Results By </h4>
                 <FormControl className={classes.formControl}>
                     <Select
                         labelId="demo-controlled-open-select-label"
