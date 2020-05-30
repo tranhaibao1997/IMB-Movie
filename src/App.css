@@ -1086,7 +1086,7 @@ a:hover {
 }
 .sort-section {
   min-width: 260px;
-  width: 260px;
+  width: 100%;
   border: 1px solid #e3e3e3;
   border-radius: 10px;
   display: flex;
