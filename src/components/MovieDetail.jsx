@@ -7,6 +7,9 @@ import {Link} from 'react-router-dom'
 export default function MovieDetail({ match }) {
   const [movieDetails, setMovieDetails] = React.useState(null);
   const [movieReview, setMovieReview] = React.useState(null);
+  let {
+    movie
+  } = React.useContext(StoreContext);
 
   React.useEffect(() => {
     getMovieDetailsFromAPI(match.params.id);
@@ -27,6 +30,8 @@ export default function MovieDetail({ match }) {
     let res = await Axios.get(url);
     setMovieReview(res.data);
   }
+
+
 
   console.log(movieDetails);
   console.log(movieReview);
