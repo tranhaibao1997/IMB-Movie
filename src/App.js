@@ -1,22 +1,34 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import Banner from './components/Banner'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
+import MovieDetail from './components/MovieDetail';
 
 function App() {
 
 
-  return <Fragment>
+  return (
+  
+  <Router>
+  <Fragment>
+
+
     <NavBar></NavBar>
-    <Banner></Banner>
+    <Switch>
+    <Route exact path="/" component={Home}></Route>
+    <Route exact path="/movie/:id" component={MovieDetail}></Route>
     <Home></Home>
+    </Switch>
    
 
+
   </Fragment>
+  </Router>
 
 
-
+  )
 }
+  
 
 export default App;

@@ -79,7 +79,7 @@ function MovieList() {
 
             <div className="movie-section">
               {movie[0].map((movie) => {
-                return <SingleMovie movie={movie}></SingleMovie>;
+                return <SingleMovie movie={movie} key={movie.id}></SingleMovie>;
               })}
             </div>
           </>

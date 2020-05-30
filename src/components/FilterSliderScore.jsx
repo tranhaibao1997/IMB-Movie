@@ -30,12 +30,16 @@ class FilterSliderScore extends React.Component {
       let url = "";
       let result = {};
       if (filterType === null && currentGenres!==null) {
-        url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres[0]}`;
+        console.log("filter using category")
+        url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}&with_genres=${currentGenres}`;
       } else if(filterType!==null) {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType[0]}&include_adult=true&include_video=false&page=${numPage}`;
+        console.log("filter using filterType")
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&language=en-US&sort_by=${filterType}&include_adult=true&include_video=false&page=${numPage}`;
+        
       }
       else
       {
+          console.log("in main page")
           url=`https://api.themoviedb.org/3/movie/now_playing?api_key=${APIkey}&language=en-US&page=${numPage}`
       }
      
