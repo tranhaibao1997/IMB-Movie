@@ -23,7 +23,7 @@ function App() {
     <Route exact path="/movies" component={Movies}></Route>
     <Home></Home>
     </Switch>
-    <Footer></Footer>
+    {/* <Footer></Footer> */}
    
 
 
