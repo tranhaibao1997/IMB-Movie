@@ -2,15 +2,18 @@ import React from "react";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { StoreContext } from "./../ThemeContext";
-import {Link} from 'react-router-dom'
-import Loading from './Loading'
+import { Link } from "react-router-dom";
+import Loading from "./Loading";
+import SingleMovie from "./SingleMovie";
+import SingleCardSlider from "./SingleCardSlider";
 
 export default function MovieDetail({ match }) {
   const [movieDetails, setMovieDetails] = React.useState(null);
   const [movieReview, setMovieReview] = React.useState(null);
-  let {
-    movie
-  } = React.useContext(StoreContext);
+  const [movieRelated, setMovieRelated] = React.useState(null);
+  const [reviewActive, setReviewActive] = React.useState(true);
+
+  let { movie } = React.useContext(StoreContext);
 
   React.useEffect(() => {
     getMovieDetailsFromAPI(match.params.id);
@@ -24,6 +27,7 @@ export default function MovieDetail({ match }) {
     let res = await Axios.get(url);
     setMovieDetails(res.data);
     getMovieReviewFromAPI(id);
+    getMovieRelatedFromAPI(id);
   }
   async function getMovieReviewFromAPI(id) {
     let APIkey = process.env.REACT_APP_APIKEY;
@@ -31,14 +35,20 @@ export default function MovieDetail({ match }) {
     let res = await Axios.get(url);
     setMovieReview(res.data);
   }
+  async function getMovieRelatedFromAPI(id) {
+    let APIkey = process.env.REACT_APP_APIKEY;
+    let url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${APIkey}&language=en-US&page=1`;
+    let res = await Axios.get(url);
+    setMovieRelated(res.data.results);
+  }
 
+  console.log(movieRelated);
 
-
-  console.log(movieDetails);
-  console.log(movieReview);
   return (
     <>
-      {movieDetails === null || movieReview === null ? (
+      {movieDetails === null ||
+      movieReview === null ||
+      movieRelated === null ? (
         <Loading></Loading>
       ) : (
         <>
@@ -54,7 +64,7 @@ export default function MovieDetail({ match }) {
               <div className="row">
                 <div className="col-xl-12">
                   <div className="breadcrumb-text text-center">
-                    <h1 style={{color:"white"}}>BAO IMB </h1>
+                    <h1 style={{ color: "white" }}>BAO IMB </h1>
                     <ul className="breadcrumb-menu">
                       <li>
                         <Link to="/">home</Link>
@@ -237,7 +247,10 @@ export default function MovieDetail({ match }) {
                     >
                       <li className="nav-item">
                         <a
-                          className="nav-link active"
+                          onClick={() => setReviewActive(!reviewActive)}
+                          className={
+                            reviewActive ? "nav-link active" : "nav-link"
+                          }
                           id="profile-tab6"
                           data-toggle="tab"
                           href="#profile6"
@@ -248,10 +261,30 @@ export default function MovieDetail({ match }) {
                           Reviews ({movieReview.results.length})
                         </a>
                       </li>
+                      <li className="nav-item">
+                        <a
+                          onClick={() => setReviewActive(!reviewActive)}
+                          className={
+                            reviewActive ? "nav-link" : "nav-link active"
+                          }
+                          id="profile-tab6"
+                          data-toggle="tab"
+                          href="#profile6"
+                          role="tab"
+                          aria-controls="profile"
+                          aria-selected="false"
+                        >
+                          Related Movies ({movieReview.results.length})
+                        </a>
+                      </li>
                     </ul>
                     <div className="tab-content" id="myTabContent2">
                       <div
-                        className="tab-pane show active"
+                        className={
+                          reviewActive
+                            ? "tab-pane show active"
+                            : "tab-pane fade"
+                        }
                         id="profile6"
                         role="tabpanel"
                         aria-labelledby="profile-tab6"
@@ -326,6 +359,26 @@ export default function MovieDetail({ match }) {
                               </div>
                             </form>
                           </div>
+                        </div>
+                      </div>
+                      <div
+                        className={
+                          reviewActive
+                            ? "tab-pane fade "
+                            : "tab-pane show active"
+                        }
+                        id="profile6"
+                        role="tabpanel"
+                        aria-labelledby="profile-tab6"
+                      >
+                        <div className="related-movies">
+                          {movieRelated.map((movie) => {
+                            return (
+                              <SingleCardSlider
+                                movie={movie}
+                              ></SingleCardSlider>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>

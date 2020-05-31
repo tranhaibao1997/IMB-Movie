@@ -13,7 +13,6 @@ body {
   font-weight: 400;
 }
 
-
 .movie-section {
   display: flex;
   flex-wrap: wrap;
@@ -306,7 +305,6 @@ i span {
 }
 
 .category-section-wrapper {
-
 }
 
 .section-title {
@@ -320,7 +318,6 @@ i span {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  
 }
 
 .category-section li {
@@ -428,14 +425,12 @@ i span {
   align-items: center;
   color: white;
 }
-.shop-widget
-{
+.shop-widget {
   margin-top: 10px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid white;
+  margin-bottom: 30px;
+  border-bottom: 1px solid white;
 }
-.shop-widget .shop-title
-{
+.shop-widget .shop-title {
   font-size: 20px;
 }
 .MuiInputBase-root {
@@ -1082,7 +1077,6 @@ a:hover {
   position: absolute;
   top: 50%;
   right: 10%;
-
 }
 .banner-content h1 {
   font-size: 70px;
@@ -1119,9 +1113,8 @@ a:hover {
   align-items: center;
   padding: 14px 16px;
 }
-.sort-section .name h2  
-{
-font-size: 20px;
+.sort-section .name h2 {
+  font-size: 20px;
 }
 .sort-section.closed .filter {
   display: block;
@@ -1129,28 +1122,33 @@ font-size: 20px;
 .sort-section.closed .name span i {
   transform: rotate(90deg);
 }
-footer
-{
-  
+footer {
   background-color: crimson;
   text-align: center;
   margin-top: 150px;
   width: 100%;
 }
-.footer-copyright
-{
+.footer-copyright {
   background-color: maroon;
 }
-.banner
-{
+.banner {
   position: relative;
 }
-.loading
-{
+.loading {
   position: fixed;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+.related-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.related-movies .card
+{
+width: 40%;
+margin-bottom: 20px;
 }
