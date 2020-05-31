@@ -19,7 +19,7 @@ export default function NavBar() {
     <>
       <div className="fixed">
         <Navbar bg="" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand ><Link to="/" style={{color:"white"}}><img src="/bao-logo.PNG"></img></Link></Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link ><Link to="/" style={{color:"white"}}>Home</Link></Nav.Link>
             <Nav.Link ><Link to="/movies" style={{color:"white"}}  >Movies</Link></Nav.Link>
