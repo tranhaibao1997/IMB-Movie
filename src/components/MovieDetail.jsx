@@ -3,6 +3,7 @@ import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { StoreContext } from "./../ThemeContext";
 import {Link} from 'react-router-dom'
+import Loading from './Loading'
 
 export default function MovieDetail({ match }) {
   const [movieDetails, setMovieDetails] = React.useState(null);
@@ -38,7 +39,7 @@ export default function MovieDetail({ match }) {
   return (
     <>
       {movieDetails === null || movieReview === null ? (
-        <div>Loading</div>
+        <Loading></Loading>
       ) : (
         <>
           {/* breadcrumb-area-start */}

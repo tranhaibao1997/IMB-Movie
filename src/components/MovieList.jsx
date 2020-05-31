@@ -6,6 +6,7 @@ import { StoreContext } from "./../ThemeContext";
 import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css";
 import FilterDropDown from "./FilterDropDown";
+import Loading from "./Loading";
 
 function MovieList() {
   let {
@@ -59,7 +60,7 @@ function MovieList() {
       <div class="movie-section-wrapper">
         {movie[0] === null ? (
           <>
-            <h1>Loading</h1>
+            <Loading></Loading>
           </>
         ) : (
           <>

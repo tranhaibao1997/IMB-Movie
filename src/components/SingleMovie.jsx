@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { StoreContext } from "./../ThemeContext";
 import Moment from "react-moment";
 import {Link} from 'react-router-dom'
+import Loading from "./Loading";
 
 export default function SingleMovie({ movie }) {
   let { category } = useContext(StoreContext);
@@ -26,7 +27,7 @@ export default function SingleMovie({ movie }) {
       {category[0] === null ? (
         <>
           <div>
-            <h1>Loading</h1>
+            <Loading></Loading>
           </div>
         </>
       ) : (

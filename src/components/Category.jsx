@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Axios from 'axios';
 import SingleCategory from './SingleCategory';
 import { StoreContext } from './../ThemeContext';
+import Loading from './Loading';
 
 export default function Category(props) {
 
@@ -23,7 +24,7 @@ export default function Category(props) {
     <div className="category-section-wrapper">
     <h2 className="section-title">Genres</h2>
         {
-            category[0] === null ? <><h1>Loading</h1></>
+            category[0] === null ? <><Loading></Loading></>
                 : <>
                    
                     <ul className="category-section tags">

@@ -1,6 +1,7 @@
 import React from "react";
 import { StoreContext } from "./../ThemeContext";
 import {Link} from 'react-router-dom'
+import Loading from './Loading'
 
 export default function SingleCardSlider({ movie }) {
   let { category } = React.useContext(StoreContext);
@@ -19,7 +20,7 @@ export default function SingleCardSlider({ movie }) {
   return (
     <>
       {category[0] === null ? (
-        <div>Loading</div>
+       <Loading></Loading>
       ) : (
         <Link to={`/movie/${movie.id}`}
           className="card"

@@ -1131,9 +1131,11 @@ font-size: 20px;
 }
 footer
 {
+  
   background-color: crimson;
   text-align: center;
   margin-top: 150px;
+  width: 100%;
 }
 .footer-copyright
 {
@@ -1142,4 +1144,13 @@ footer
 .banner
 {
   position: relative;
+}
+.loading
+{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

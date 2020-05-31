@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import SingleCardSlider from "./SingleCardSlider";
+import Loading from "./Loading";
 
 export default function PopularMovies() {
   const [topMovie, setTopMovie] = React.useState(null);
@@ -27,7 +28,7 @@ export default function PopularMovies() {
   return (
     <>
       {topMovie === null ? (
-        <div>Loading</div>
+        <Loading></Loading>
       ) : (
         <>
         <h1 className="title">Top Popular Movies</h1>
