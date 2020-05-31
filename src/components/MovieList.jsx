@@ -21,6 +21,7 @@ function MovieList() {
 
   useEffect(() => {
     getDataFromAPI(1);
+    page[1](1)
     return () => {};
   }, []);
 
