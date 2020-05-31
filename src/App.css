@@ -82,6 +82,7 @@ body {
   -webkit-box-orient: vertical;
   font-size: 15px !important;
   text-transform: uppercase;
+  font-size: 25px !important;
 }
 
 .movie_card .info_section .movie_header h4 {
@@ -310,6 +311,7 @@ i span {
 
 .section-title {
   color: white;
+  font-size: 20px;
 }
 
 .category-section {
@@ -431,6 +433,10 @@ i span {
   margin-top: 10px;
     margin-bottom: 30px;
     border-bottom: 1px solid white;
+}
+.shop-widget .shop-title
+{
+  font-size: 20px;
 }
 .MuiInputBase-root {
   margin-top: 0px;
@@ -1060,19 +1066,23 @@ a:hover {
   position: fixed;
   top: 0;
   z-index: 100;
-  background-color: brown !important;
+  background-color: rgb(20, 20, 20) !important;
   padding: 7px;
 }
 
 .home-banner {
-  background-image: url("/big-banner.jpg");
+  /* background-image: url("/big-banner.jpg"); */
   height: 100vh;
   width: 100%;
+  border: none;
 }
 .banner-content {
   width: 80%;
   margin: 0 auto;
-  padding-top: 50vh;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+
 }
 .banner-content h1 {
   font-size: 70px;
@@ -1109,6 +1119,10 @@ a:hover {
   align-items: center;
   padding: 14px 16px;
 }
+.sort-section .name h2  
+{
+font-size: 20px;
+}
 .sort-section.closed .filter {
   display: block;
 }
@@ -1124,4 +1138,8 @@ footer
 .footer-copyright
 {
   background-color: maroon;
+}
+.banner
+{
+  position: relative;
 }
