@@ -14,6 +14,7 @@ export default ({ children }) => {
     const [totalPage,setToTalPage]=useState(null);
     const [filterType, setFilterType] = useState(null);
     const [keyword, setKeyWord] = useState(null);
+    const [favorite,setFavorite]=useState([])
     
   
 
@@ -27,7 +28,8 @@ export default ({ children }) => {
         totalPage:[totalPage,setToTalPage],
         currentGenres:[currentGenres,setCurrentGenres],
         filterType:[filterType, setFilterType],
-        keyword:[keyword, setKeyWord]
+        keyword:[keyword, setKeyWord],
+        favorite:[favorite,setFavorite]
         
     };
 
