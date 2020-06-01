@@ -1171,7 +1171,7 @@ a:hover {
 
 .fixed {
     width: 100%;
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 100;
     background-color: rgb(20, 20, 20) !important;
@@ -1285,4 +1285,26 @@ footer {
 
 .black {
     color: grey !important;
+}
+.breadcrumb-menu 
+{
+position: none !important;
+z-index: 0;
+}
+
+/* Trailer CSS */
+#model-btn-open {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fe4536;
+    margin-bottom: 15px;
+}
+
+#model-btn-open:hover {
+    opacity: 90%;
+}
+
+.trailer {
+    height: 100%;
+    margin-top: 10px;
 }
