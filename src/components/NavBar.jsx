@@ -23,6 +23,7 @@ export default function NavBar() {
           <Nav className="mr-auto">
             <Nav.Link ><Link to="/" style={{color:"white"}}>Home</Link></Nav.Link>
             <Nav.Link ><Link to="/movies" style={{color:"white"}}  >Movies</Link></Nav.Link>
+            <Nav.Link ><Link to="/favorite" style={{color:"white"}}  > My Favorite</Link></Nav.Link>
             
           </Nav>
           <Form inline>

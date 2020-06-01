@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import SingleMovie from "./SingleMovie";
 import SingleCardSlider from "./SingleCardSlider";
+import ReactModal from 'react-modal';
 
 export default function MovieDetail({ match }) {
   const [movieDetails, setMovieDetails] = React.useState(null);
   const [movieReview, setMovieReview] = React.useState(null);
   const [movieRelated, setMovieRelated] = React.useState(null);
   const [reviewActive, setReviewActive] = React.useState(true);
+  const [modalOpen, setModalOpen] = React.useState(false)
 
   let { movie, favorite } = React.useContext(StoreContext);
 
@@ -54,13 +56,15 @@ export default function MovieDetail({ match }) {
       newArray.splice(index, 1);
       favorite[1](newArray)
     }
-   
+
 
     // favorite[1](newArray1)
 
 
   }
-
+  function closeModal() {
+    setModalOpen(false)
+  }
   console.log(movieRelated);
   console.log(favorite[0])
 
@@ -242,6 +246,9 @@ export default function MovieDetail({ match }) {
                           </ul>
                         </div>
                         <div className="product-action-details variant-item">
+
+                          <button class="btn theme-btn" onClick={() => setModalOpen(true)}>purchase now</button>
+
                           <div className="product-details-action">
 
                             <button
@@ -255,12 +262,25 @@ export default function MovieDetail({ match }) {
                               }
                             </button>
 
+
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
+
+
+                <ReactModal isOpen={modalOpen}>
+                  <button onClick={() => closeModal()}>X</button>
+                </ReactModal>
+
+
+
+
+
                 <div className="row mt-50">
                   <div className="col-xl-12 col-lg-12">
                     <div className="product-review">

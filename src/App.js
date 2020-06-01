@@ -6,6 +6,7 @@ import Home from './components/Home'
 import MovieDetail from './components/MovieDetail';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
+import Favorite from './components/Favorite';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     <Route exact path="/" component={Home}></Route>
     <Route exact path="/movie/:id" component={MovieDetail}></Route>
     <Route exact path="/movies" component={Movies}></Route>
+    <Route exact path="/favorite" component={Favorite}></Route>
     <Home></Home>
     </Switch>
     {/* <Footer></Footer> */}
