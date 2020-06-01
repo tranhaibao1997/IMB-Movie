@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import SingleMovie from "./SingleMovie";
 import SingleCardSlider from "./SingleCardSlider";
 import ReactModal from 'react-modal';
+import YouTube from '@u-wave/react-youtube'
 
 export default function MovieDetail({ match }) {
   const [movieDetails, setMovieDetails] = React.useState(null);
@@ -16,6 +17,8 @@ export default function MovieDetail({ match }) {
   const [modalOpen, setModalOpen] = React.useState(false)
 
   let { movie, favorite } = React.useContext(StoreContext);
+
+  const [trailer, setTrailer] = React.useState(null)
 
   React.useEffect(() => {
     getMovieDetailsFromAPI(match.params.id);
@@ -30,6 +33,8 @@ export default function MovieDetail({ match }) {
     setMovieDetails(res.data);
     getMovieReviewFromAPI(id);
     getMovieRelatedFromAPI(id);
+    getTrailer(id)
+    console.log("ID is:", id)
   }
   async function getMovieReviewFromAPI(id) {
     let APIkey = process.env.REACT_APP_APIKEY;
@@ -42,6 +47,14 @@ export default function MovieDetail({ match }) {
     let url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${APIkey}&language=en-US&page=1`;
     let res = await Axios.get(url);
     setMovieRelated(res.data.results);
+  }
+
+  async function getTrailer(id) {
+    let APIkey = process.env.REACT_APP_APIKEY;
+    let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${APIkey}&language=en-US`
+    let res = await Axios.get(url)
+    setTrailer(res.data.results[0])
+    console.log("Trailer:", res.data.results[0])
   }
 
   function addToFavorite(id) {
@@ -65,6 +78,7 @@ export default function MovieDetail({ match }) {
   function closeModal() {
     setModalOpen(false)
   }
+
   console.log(movieRelated);
   console.log(favorite[0])
 
@@ -72,7 +86,8 @@ export default function MovieDetail({ match }) {
     <>
       {movieDetails === null ||
         movieReview === null ||
-        movieRelated === null ? (
+        movieRelated === null ||
+        trailer === null ? (
           <Loading></Loading>
         ) : (
           <>
@@ -247,7 +262,7 @@ export default function MovieDetail({ match }) {
                         </div>
                         <div className="product-action-details variant-item">
 
-                          <button class="btn theme-btn" onClick={() => setModalOpen(true)}>purchase now</button>
+                          <button class="btn theme-btn" id="model-btn-open" onClick={() => setModalOpen(true)}><i class="fas fa-film"></i> Watch Trailer</button>
 
                           <div className="product-details-action">
 
@@ -270,12 +285,17 @@ export default function MovieDetail({ match }) {
                   </div>
                 </div>
 
-
-
-
-                <ReactModal isOpen={modalOpen}>
-                  <button onClick={() => closeModal()}>X</button>
-                </ReactModal>
+                  <ReactModal isOpen={modalOpen} style={{content: {backgroundColor:'#000'}}}>
+                    <i class="fas fa-times fa-2x" style={{color:"#fe4536"}} onClick={() => closeModal()}></i>
+                    <div className="trailer">
+                      <YouTube 
+                        video={trailer.key}
+                        autoplay
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                  </ReactModal>
 
 
 
